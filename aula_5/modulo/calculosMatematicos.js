@@ -11,9 +11,9 @@ function calculadora (numero1, numero2, tipoCalculo){
                     case "somar":
                     case "+":
 
-                        resultado = numero1 + numero2
+                        resultado = valor1 + valor2
                         if(resultado){
-                            console.log(`O resultado de ${numero1.toFixed(2).replace(".",",")} + ${numero2.toFixed(2).replace(".",",")} é: ${resultado.toFixed(2).replace(".",",")}`)
+                            console.log(`O resultado de ${valor1.toFixed(2).replace(".",",")} + ${valor2.toFixed(2).replace(".",",")} é: ${resultado.toFixed(2).replace(".",",")}`)
                         }
                         
                         break;
@@ -21,20 +21,20 @@ function calculadora (numero1, numero2, tipoCalculo){
                     case "subtrair":
                     case "-":
 
-                        resultado = numero1 - numero2
+                        resultado = valor1 - valor2
                         if(resultado){
-                            console.log(`O resultado de ${numero1.toFixed(2).replace(".",",")} - ${numero2.toFixed(2).replace(".",",")} é: ${resultado.toFixed(2).replace(".",",")}`)
+                            console.log(`O resultado de ${valor1.toFixed(2).replace(".",",")} - ${valor2.toFixed(2).replace(".",",")} é: ${resultado.toFixed(2).replace(".",",")}`)
                         }
                         break;
 
                     case "dividir":
                     case "/":
 
-                        if(numero2 == 0){
+                        if(valor2 == 0){
                         console.log('ERRO. Não é possível dividir um número por 0')
                     } else if (resultado) {
-                        resultado = numero1 / numero2
-                        console.log(`O resultado de ${numero1.toFixed(2).replace(".",",")} / ${numero2.toFixed(2).replace(".",",")} é: ${resultado.toFixed(2).replace(".",",")}`)
+                        resultado = valor1 / valor2
+                        console.log(`O resultado de ${valor1.toFixed(2).replace(".",",")} / ${valor2.toFixed(2).replace(".",",")} é: ${resultado.toFixed(2).replace(".",",")}`)
                     }
 
                         break;
@@ -42,11 +42,11 @@ function calculadora (numero1, numero2, tipoCalculo){
                     case "multiplicar":
                     case "x":
 
-                        resultado = numero1 * numero2
+                        resultado = valor1 * valor2
                         
                         
                         if(resultado){
-                            console.log(`O resultado de ${numero1.toFixed(2).replace(".",",")} X ${numero2.toFixed(2).replace(".",",")} é: ${resultado.toFixed(2).replace(".",",")}`)
+                            console.log(`O resultado de ${valor1.toFixed(2).replace(".",",")} X ${valor2.toFixed(2).replace(".",",")} é: ${resultado.toFixed(2).replace(".",",")}`)
                         }
                         break;
 
