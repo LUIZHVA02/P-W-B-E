@@ -6,9 +6,9 @@
 ********************************************************************************/
 
 const gerarTabuada = function(valorTabuada,contadorInicial,contadorFinal){
-    let tabuada = valorTabuada
-    let contInicial = contadorInicial
-    let contFinal = contadorFinal
+    let tabuada = Number(valorTabuada)
+    let contInicial = Number(contadorInicial)
+    let contFinal = Number(contadorFinal)
     let resultado
     let status = false
     
@@ -16,23 +16,28 @@ const gerarTabuada = function(valorTabuada,contadorInicial,contadorFinal){
         contInicial = contadorFinal
         contFinal = contadorInicial
     } 
-    if (contInicial == '' || contFinal == '' || tabuada == '') {
+    if (contadorInicial == '' || contadorFinal == '' || valorTabuada == '') {
         console.log('ERRO. Por Favor Insira Apenas Números')
 
     } else if (isNaN(contInicial) || isNaN(contFinal) || isNaN(tabuada)) {
         console.log('ERRO. Por Favor Insira Apenas Números')
 
-        contInicial = Number (contadorInicial)
-        contFinal = Number (contadorFinal)
     } else {
-        while (contInicial <= contFinal) {
+        // while (contInicial <= contFinal) {
+        //     resultado = tabuada * contInicial
+        //     console.log(`${tabuada} X ${contInicial} = ${resultado}`)
+
+        //     //contInicial = contInicial + 1
+        //     contInicial++
+        //     //contInicial+=1
+            
+        //     status = true
+        // }
+
+        for(; contInicial<=contFinal;contInicial++){
             resultado = tabuada * contInicial
             console.log(`${tabuada} X ${contInicial} = ${resultado}`)
 
-            //contInicial = contInicial + 1
-            contInicial++
-            //contInicial+=1
-            
             status = true
         }
     }
@@ -40,4 +45,6 @@ const gerarTabuada = function(valorTabuada,contadorInicial,contadorFinal){
     return status
 } 
 
-gerarTabuada('2','0','10')
+module.exports = {
+    gerarTabuada
+}
