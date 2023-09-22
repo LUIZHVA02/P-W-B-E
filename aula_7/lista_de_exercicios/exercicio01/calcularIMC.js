@@ -1,4 +1,4 @@
-const calculoIMC = function (letAltura, letPeso, letResultado) {
+const calculoIMC = function (letAltura, letPeso, letResultado){
     
     let altura = Number(letAltura)
     let peso = Number(letPeso)
@@ -19,22 +19,28 @@ const situacaoIMC = function (letSituacao) {
     let situacao = letSituacao 
 
     if(resultado < 18.5){
-        situacao = `Você Está Abaixo do Peso. \nSeu Peso é${resultado}`
+        situacao = `Você Está Abaixo do Peso. \n
+                    Seu Peso é${resultado}`
         
     } else if(resultado >= 18.5 && resultado <24.9){
-        situacao = `Peso Normal. \nSeu Peso é${resultado}`
+        situacao = `Peso Normal. \n
+                    Seu Peso é${resultado}`
 
     } else if(resultado >= 25.0 && resultado <29.9){
-        situacao = `Acima do Peso(sobrepeso). \nSeu Peso é${resultado}`
+        situacao = `Acima do Peso(sobrepeso). \n
+                    Seu Peso é${resultado}`
 
     } else if(resultado >= 30.0 && resultado <34.9){
-        situacao = `Obesidade I. \nSeu Peso é${resultado}`
+        situacao = `Obesidade I. \n
+                    Seu Peso é${resultado}`
 
     } else if(resultado >= 35.0 && resultado <39.9){
-        situacao = `Obesidade II. \nSeu Peso é${resultado}`
+        situacao = `Obesidade II. \n
+                    Seu Peso é${resultado}`
 
     } else if(resultado >= 40.0){
-        situacao = `Obesidade III. \nSeu Peso é${resultado}`
+        situacao = `Obesidade III. \n
+                    Seu Peso é${resultado}`
     }
 
     return situacao
