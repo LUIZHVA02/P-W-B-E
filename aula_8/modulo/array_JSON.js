@@ -86,6 +86,34 @@ const percorrendoArray = function () {
 
 }
 
-percorrendoArray()
+const filtrarProduto = function (nomeProduto) {
+    let listaDeProdutos = ['Mouse', 'Teclado', 'Monitor', 'Impressora','Mouse Pad', 'Gabinete', 'Processador', 'HD']
+
+    let nome = String (nomeProduto)
+
+    let status = false
+
+    // if(listaDeProdutos.indexOf(nome) >= 0){
+    //     status = true
+    // } else {
+    //     status = false
+    // }
+    // return status
+
+    // return listaDeProdutos.includes(nome)
+
+    listaDeProdutos.forEach(function (produto){
+        
+        if(produto.toUpperCase() == nome.toUpperCase()){
+            status = true
+        }
+
+    })
+
+    return status
+}
+
+console.log(filtrarProduto('mouse'))
+// percorrendoArray()
 
 //introducaoAoArray()
