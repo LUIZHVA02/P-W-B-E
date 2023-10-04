@@ -45,6 +45,8 @@ entradaDeDados.question('Digite o nome do aluno(a): ', function (aluno) {
                                             sexoProfessor, nomeCurso, nomeDisciplina,
                                             nota1, nota2, nota3, nota4))
 
+                                            mediasEscolares.relatorioAluno1()
+
                                         console.log('')
                                         console.log('/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/')
                                         console.log('')
@@ -57,6 +59,8 @@ entradaDeDados.question('Digite o nome do aluno(a): ', function (aluno) {
                                                 mediasEscolares.mediaDoExame(nomeAluno, sexoAluno, nomeDoProfessor,
                                                     sexoProfessor, nomeCurso, nomeDisciplina,
                                                     nota1, nota2, nota3, nota4, notaExame)
+
+                                                mediasEscolares.relatorioAluno2()
 
                                             })
                                         }
