@@ -1,7 +1,7 @@
 const mediaComum = function
     (nomeAluno, sexoAluno, nomeDoProfessor,
         sexoProfessor, nomeCurso, nomeDisciplina,
-        nota1, nota2, nota3, nota4) {
+        nota1, nota2, nota3, nota4, aSituacao) {
 
 
     let studentsName = nomeAluno
@@ -15,7 +15,7 @@ const mediaComum = function
     let grade3 = Number(nota3)
     let grade4 = Number(nota4)
     let media = (grade1 + grade2 + grade3 + grade4) / 4
-    let situacaoA = ''
+    let situacaoA = String(aSituacao)
 
     if (nota1 < 0 || nota1 > 100 || nota2 < 0 || nota2 > 100 ||
         nota3 < 0 || nota3 > 100 || nota4 < 0 || nota4 > 100) {
@@ -40,7 +40,7 @@ const mediaComum = function
     sexoProfessor, nomeCurso, nomeDisciplina, nota1, nota2, nota3, nota4
 }
 
-const mediaDoExame = (nota1, nota2, nota3, nota4, notaExame) => {
+const mediaDoExame = (nota1, nota2, nota3, nota4, notaExame, bSituacao) => {
 
     let grade1 = Number(nota1)
     let grade2 = Number(nota2)
@@ -48,7 +48,7 @@ const mediaDoExame = (nota1, nota2, nota3, nota4, notaExame) => {
     let grade4 = Number(nota4)
     let examsGrade = Number(notaExame)
     let media = (grade1 + grade2 + grade3 + grade4) / 4
-    let situacaoB = ''
+    let situacaoB = String(bSituacao)
     let media2 = (media + examsGrade) / 2
 
     if (media2 < 60) {
@@ -63,7 +63,7 @@ const mediaDoExame = (nota1, nota2, nota3, nota4, notaExame) => {
 
 const relatorioAluno1 = (nomeAluno, sexoAluno, nomeDoProfessor,
                         sexoProfessor, nomeCurso, nomeDisciplina,
-                        nota1, nota2, nota3, nota4, notaExame, situacaoA) => {
+                        nota1, nota2, nota3, nota4, situacaoA) => {
 
     let studentsName = nomeAluno
     let teachersName = nomeDoProfessor
@@ -75,10 +75,11 @@ const relatorioAluno1 = (nomeAluno, sexoAluno, nomeDoProfessor,
     let grade2 = Number(nota2)
     let grade3 = Number(nota3)
     let grade4 = Number(nota4)
+    let notaExame = 0
     let examsGrade = Number(notaExame)
     let media = (grade1 + grade2 + grade3 + grade4) / 4
     let situacao1 = situacaoA
-    let media2 = (media + examsGrade) / 2
+    let media2 = "Não Foi Necessária"
 
     if (studentsGender == 'M' && teachersGender == 'M') {
         console.log(`O Aluno ${studentsName} foi ${situacao1} na Disciplina ${className}`)

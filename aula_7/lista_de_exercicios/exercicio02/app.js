@@ -41,11 +41,18 @@ entradaDeDados.question('Digite o nome do aluno(a): ', function (aluno) {
                                         console.log('/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/')
                                         console.log('')
 
-                                        let media = Number (mediasEscolares.mediaComum(nomeAluno, sexoAluno, nomeDoProfessor,
-                                            sexoProfessor, nomeCurso, nomeDisciplina,
-                                            nota1, nota2, nota3, nota4))
+                                            
 
-                                            mediasEscolares.relatorioAluno1()
+                                        mediasEscolares.mediaComum(nomeAluno, sexoAluno, nomeDoProfessor,
+                                            sexoProfessor, nomeCurso, nomeDisciplina,
+                                            nota1, nota2, nota3, nota4, aSituacao)
+
+                                            if(media > 70){  
+                                                mediasEscolares.relatorioAluno1(nomeAluno, sexoAluno, nomeDoProfessor,
+                                                                                sexoProfessor, nomeCurso, nomeDisciplina,
+                                                                                nota1, nota2, nota3, nota4)
+                                            }
+                                          
 
                                         console.log('')
                                         console.log('/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/')
@@ -56,11 +63,11 @@ entradaDeDados.question('Digite o nome do aluno(a): ', function (aluno) {
                                             entradaDeDados.question('Digite a nota do exame: ', function (exame) {
                                                 let notaExame = Number(exame)
 
-                                                mediasEscolares.mediaDoExame(nomeAluno, sexoAluno, nomeDoProfessor,
+                                                mediasEscolares.mediaDoExame(nota1, nota2, nota3, nota4, notaExame)
+
+                                                mediasEscolares.relatorioAluno2(nomeAluno, sexoAluno, nomeDoProfessor,
                                                     sexoProfessor, nomeCurso, nomeDisciplina,
                                                     nota1, nota2, nota3, nota4, notaExame)
-
-                                                mediasEscolares.relatorioAluno2()
 
                                             })
                                         }
