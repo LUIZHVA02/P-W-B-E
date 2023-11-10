@@ -10,10 +10,11 @@ const getListaDeEstados = function () {
 
     let jsonEstados = {}
     let arrayEstados = []
+    let caminhoEstados = estados_cidades.estadosCidades.estados
 
 
-    estados_cidades.estadosCidades.estados.forEach(function (sigla, indice) {
-        arrayEstados.push(estados_cidades.estadosCidades.estados[indice].sigla)
+    caminhoEstados.forEach(function (sigla, indice) {
+        arrayEstados.push(caminhoEstados[indice].sigla)
     })
 
     jsonEstados.uf = arrayEstados
@@ -32,33 +33,26 @@ const getDadosEstado = function (estadoEscolhido) {
     onde a sigla do estado será o critério de filtro. 
     *
     **********************************************/
+    let siglaEstado = estadoEscolhido.toUpperCase()
+    let caminhoEstados = estados_cidades.estadosCidades.estados
+    let jsonSigla = {}
 
-    jsonSigla = {}
-    arraySigla = []
-    let i = 0
+    caminhoEstados.forEach(function (caminhoEstados) {
+        if (caminhoEstados.sigla.includes(siglaEstado)) {
+            jsonSigla.uf = caminhoEstados.sigla
+            jsonSigla.descricao = caminhoEstados.nome
+            jsonSigla.capital = caminhoEstados.capital
+            jsonSigla.regiao = caminhoEstados.regiao
+        }
 
-    estados_cidades.estadosCidades.estados.forEach(function(sigla, i){
-        estados_cidades.estadosCidades.estados[i].sigla
-
-        console.log(i)
     })
-    
-    while (estadoEscolhido != estados_cidades.estadosCidades.estados[i].sigla) {
-        
-
-        i++
-    }
-    jsonSigla.push(estados_cidades.estadosCidades.estados[i].sigla,
-                    estados_cidades.estadosCidades.estados[i].nome,
-                    estados_cidades.estadosCidades.estados[i].capital,
-                    estados_cidades.estadosCidades.estados[i].regiao)
 
     console.log(jsonSigla)
     return jsonSigla
 }
-getDadosEstado()
+// getDadosEstado('Sp')
 
-const getCapitalEstado = function () {
+const getCapitalEstado = function (estadoEscolhido) {
     /**********************************************
     *
     ● Criar uma função (getCapitalEstado) que retorna 
@@ -67,9 +61,24 @@ const getCapitalEstado = function () {
     filtro. 
     *
     **********************************************/
-}
+    let siglaEstado = estadoEscolhido.toUpperCase()
+    let caminhoEstados = estados_cidades.estadosCidades.estados
+    let jsonSigla = {}
 
-const getEstadosRegiao = function () {
+    caminhoEstados.forEach(function (caminhoEstados) {
+        if (caminhoEstados.sigla.includes(siglaEstado)) {
+            jsonSigla.uf = caminhoEstados.sigla
+            jsonSigla.descricao = caminhoEstados.nome
+            jsonSigla.capital = caminhoEstados.capital
+        }
+
+    })
+    console.log(jsonSigla)
+    return jsonSigla
+}
+// getCapitalEstado('ac')
+
+const getEstadosRegiao = function (regiaoEscolhida) {
     /**********************************************
     *
     ● Criar uma função (getEstadosRegiao) que retorna 
@@ -78,7 +87,32 @@ const getEstadosRegiao = function () {
     critério de filtro.
     *
     **********************************************/
+    let nomeRegiao = regiaoEscolhida.toUpperCase()
+    let caminhoEstados = estados_cidades.estadosCidades.estados
+    let jsonRegiao = {}
+    let arrayEstados = []
+    
+    jsonRegiao.regiao = nomeRegiao
+
+    caminhoEstados.forEach(function (estados) {
+        
+        if (estados.regiao.toUpperCase().includes(nomeRegiao)) {
+            
+            let jsonSiglaDesc = {}
+            jsonSiglaDesc.uf = estados.sigla
+            jsonSiglaDesc.descricao = estados.nome
+
+            arrayEstados.push(jsonSiglaDesc)
+        }
+
+    })
+    jsonRegiao.estados = arrayEstados
+
+    console.log(jsonRegiao)
+    return jsonRegiao
+
 }
+// getEstadosRegiao('SUL')
 
 const getCapitalPais = function () {
     /**********************************************
@@ -88,6 +122,8 @@ const getCapitalPais = function () {
     a capital do Brasil. 
     *
     **********************************************/
+
+    
 }
 
 const getCidades = function () {
