@@ -112,7 +112,7 @@ const getEstadosRegiao = function (regiaoEscolhida) {
     return jsonRegiao
 
 }
-// getEstadosRegiao('SUL')
+//getEstadosRegiao('SUL')
 
 const getCapitalPais = function () {
     /**********************************************
@@ -133,4 +133,13 @@ const getCidades = function () {
     lista de cidades, filtrado pela sigla do estado.  
     *
     **********************************************/
+}
+
+module.exports={
+    getListaDeEstados,
+    getDadosEstado,
+    getCapitalEstado,
+    getEstadosRegiao,
+    getCapitalPais,
+    getCidades
 }
