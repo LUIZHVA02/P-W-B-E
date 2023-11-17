@@ -36,6 +36,7 @@ const getDadosEstado = function (estadoEscolhido) {
     let siglaEstado = estadoEscolhido.toUpperCase()
     let caminhoEstados = estados_cidades.estadosCidades.estados
     let jsonSigla = {}
+    let status = false
 
     caminhoEstados.forEach(function (caminhoEstados) {
         if (caminhoEstados.sigla.includes(siglaEstado)) {
@@ -43,14 +44,22 @@ const getDadosEstado = function (estadoEscolhido) {
             jsonSigla.descricao = caminhoEstados.nome
             jsonSigla.capital = caminhoEstados.capital
             jsonSigla.regiao = caminhoEstados.regiao
-        }
 
+        } 
+            status = true
     })
 
-    console.log(jsonSigla)
-    return jsonSigla
+    if(status = true){
+        console.log(jsonSigla)
+        return jsonSigla
+    } else{
+        return false
+    }
+
+    
+    
 }
-// getDadosEstado('Sp')
+// getDadosEstado('Sp') 
 
 const getCapitalEstado = function (estadoEscolhido) {
     /**********************************************

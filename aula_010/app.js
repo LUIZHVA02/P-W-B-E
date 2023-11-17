@@ -6,16 +6,16 @@
 *******************************************************************/
 
 /** Instalações da dependência para criação da API
- *      express         - "npm install express --save" {
- *          Dependência do node para auxiliar na criação da API}
+ *  express     - "npm install express --save" {
+ *     Dependência do node para auxiliar na criação da API}
  * 
- *      cors            - "npm install cors --save" {
- *          [Dependência para manipular recursos de acesso, permissões, etc da API]
- *          [Trabalha com as informações no Head(Front-End - html)]}
+ *  cors        - "npm install cors --save" {
+ *      [Dependência para manipular recursos de acesso, permissões, etc da API]
+ *      [Trabalha com as informações no Head(Front-End - html)]}
  * 
- *      body-parser     - "npm install body-parser --save" {
- *          [É uma dependência para auxiliar na chegada de dados na API]
- *          [Trabalha com as informações no Body(Front-End - html)]}
+ *  body-parser - "npm install body-parser --save" {
+ *      [É uma dependência para auxiliar na chegada de dados na API]
+ *      [Trabalha com as informações no Body(Front-End - html)]}
  */
 
 /*** Métodos de Requisição de Dados
@@ -41,7 +41,7 @@ const app = express()
 app.use ((request, response, next)=>{
 
     /*response.header('Access-Control-Allow-Origin', '*') {
-        Qualquer um tem acesso para fazer requisições à API}*/
+        Qualquer um, todos, tem acesso para fazer requisições à API}*/
 
     /*response.header('Access-Control-Allow-Origin', '185.56.14.1, 185.56.15.1') {
         Apenas os endereços de IP pré-definidos tem acesso para fazer requisições à API}*/
@@ -65,11 +65,51 @@ app.get('/estados/sigla', cors(), async function(request, response, next){
     let listaDeEstados = controleListaEstados.getListaDeEstados()
 
 
+    if(listaDeEstados){
+        response.json(listaDeEstados)
+        response.status(200)
+    } else {
+        response.status(404)
+        response.json({erro:'Não foi possível encontrar um item'})
+    }
+
+})
+
+//EndPoint: retorna os dados do estadofiltrando pela sigla
+app.get('/estado/sigla/:uf', cors(), async function(request, response, next){
+
+    //Recebe uma variável encaminhada por parametro na URL da requisição
+    let siglaEstado = request.params.uf
+
+    let controleDadosEstado = require('./modulo/manipulandoArrayEJSON')
+    let dadosCapital = controleDadosEstado.getDadosEstado(siglaEstado)
+
+    if(dadosCapital){
+        response.json(dadosCapital)
+        response.status(200)
+    } else {
+        response.status(404)
+        response.json({erro:'Não foi possível encontrar um item'})
+    }
+
     
 
-    response.json(listaDeEstados)
-    response.status(200)
+})
 
+app.get('/capital/estado', cors(), async function(request, response, next){
+
+    let siglaEstado = request.query.uf
+
+    let controleCapitalEstado = require('./modulo/manipulandoArrayEJSON')
+    let capitalEstado = controleCapitalEstado.getCapitalEstado(siglaEstado)
+
+    if(capitalEstado){
+        response.json(capitalEstado)
+        response.status(200)
+    } else {
+        response.status(404)
+        response.json({erro:'Não foi possível encontrar um item'})
+    }
 })
 
 app.listen(8080, function(){
