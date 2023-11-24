@@ -115,4 +115,3 @@ app.get('/capital/estado', cors(), async function(request, response, next){
 app.listen(8080, function(){
     console.log('API funcionando e aguardando requisições')
 })
-

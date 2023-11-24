@@ -1,3 +1,4 @@
+const { json } = require('express')
 var estados_cidades = require('./estados_cidades')
 
 const getListaDeEstados = function () {
@@ -45,19 +46,19 @@ const getDadosEstado = function (estadoEscolhido) {
             jsonSigla.capital = caminhoEstados.capital
             jsonSigla.regiao = caminhoEstados.regiao
 
-        } 
-            status = true
+        }
+        status = true
     })
 
-    if(status = true){
+    if (status = true) {
         console.log(jsonSigla)
         return jsonSigla
-    } else{
+    } else {
         return false
     }
 
-    
-    
+
+
 }
 // getDadosEstado('Sp') 
 
@@ -100,13 +101,13 @@ const getEstadosRegiao = function (regiaoEscolhida) {
     let caminhoEstados = estados_cidades.estadosCidades.estados
     let jsonRegiao = {}
     let arrayEstados = []
-    
+
     jsonRegiao.regiao = nomeRegiao
 
     caminhoEstados.forEach(function (estados) {
-        
+
         if (estados.regiao.toUpperCase().includes(nomeRegiao)) {
-            
+
             let jsonSiglaDesc = {}
             jsonSiglaDesc.uf = estados.sigla
             jsonSiglaDesc.descricao = estados.nome
@@ -121,7 +122,7 @@ const getEstadosRegiao = function (regiaoEscolhida) {
     return jsonRegiao
 
 }
-//getEstadosRegiao('SUL')
+// getEstadosRegiao('SUL')
 
 const getCapitalPais = function () {
     /**********************************************
@@ -132,19 +133,79 @@ const getCapitalPais = function () {
     *
     **********************************************/
 
-    
+    let caminhoEstados = estados_cidades.estadosCidades.estados
+    let jsonCapitais = {}
+    let arrayCapitais = []
+
+    caminhoEstados.forEach(function (estados) {
+
+        if (estados.capital_pais) {
+            let jsonCapitalAtual = {}
+
+            jsonCapitalAtual.capital_atual = estados.capital_pais.capital
+            jsonCapitalAtual.uf = estados.sigla
+            jsonCapitalAtual.descricao = estados.nome
+            jsonCapitalAtual.capital = estados.capital
+            jsonCapitalAtual.regiao = estados.regiao
+            jsonCapitalAtual.capital_pais_ano_inicio = estados.capital_pais.ano_inicio
+            jsonCapitalAtual.capital_pais_ano_termino = estados.capital_pais.ano_fim
+
+            arrayCapitais.push(jsonCapitalAtual)
+
+        }
+
+
+    })
+    jsonCapitais.capitais = arrayCapitais
+
+    console.log(jsonCapitais)
+    return jsonCapitais
+
+
 }
 
-const getCidades = function () {
+// getCapitalPais() 
+
+const getCidades = function (estadoEscolhido) {
     /**********************************************
     *
     ● Criar uma função (getCidades) que retorna uma 
     lista de cidades, filtrado pela sigla do estado.  
     *
     **********************************************/
+
+    let siglaCidade = estadoEscolhido.toUpperCase()
+
+    let jsonCidades = {}
+    let arrayCidades = []
+    let caminhoEstados = estados_cidades.estadosCidades.estados
+    let jsonCidadesEstado = {}
+    
+    caminhoEstados.forEach(function (estados) {
+
+        if (estados.sigla.toUpperCase().includes(siglaCidade)) {
+
+            jsonCidadesEstado.uf = estados.sigla
+            jsonCidadesEstado.descricao = estados.nome
+            jsonCidadesEstado.quantidade_cidades = estados.cidades.length
+            
+            estados.cidades.forEach(function (cidade) {
+                arrayCidades.push(cidade.nome)
+            })
+            jsonCidades = jsonCidadesEstado
+            jsonCidades.cidades = arrayCidades
+        }
+
+    })
+
+    console.log(jsonCidades)
+    return jsonCidades
+
 }
 
-module.exports={
+getCidades('ac')
+
+module.exports = {
     getListaDeEstados,
     getDadosEstado,
     getCapitalEstado,
