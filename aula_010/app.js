@@ -60,7 +60,7 @@ app.use ((request, response, next)=>{
 //EndPoints: Listar a sigla de todos os estados
 app.get('/estados/sigla', cors(), async function(request, response, next){
 
-    let controleListaEstados = require('./modulo/manipulandoArrayEJSON')
+    let controleListaEstados = require('./modulo/manipulandoArrayEJSON.js')
 
     let listaDeEstados = controleListaEstados.getListaDeEstados()
 
@@ -75,13 +75,13 @@ app.get('/estados/sigla', cors(), async function(request, response, next){
 
 })
 
-//EndPoint: retorna os dados do estadofiltrando pela sigla
+//EndPoint: retorna os dados do estado filtrando pela sigla
 app.get('/estado/sigla/:uf', cors(), async function(request, response, next){
 
     //Recebe uma variável encaminhada por parametro na URL da requisição
     let siglaEstado = request.params.uf
 
-    let controleDadosEstado = require('./modulo/manipulandoArrayEJSON')
+    let controleDadosEstado = require('./modulo/manipulandoArrayEJSON.js')
     let dadosCapital = controleDadosEstado.getDadosEstado(siglaEstado)
 
     if(dadosCapital){
@@ -92,15 +92,13 @@ app.get('/estado/sigla/:uf', cors(), async function(request, response, next){
         response.json({erro:'Não foi possível encontrar um item'})
     }
 
-    
-
 })
 
 app.get('/capital/estado', cors(), async function(request, response, next){
 
     let siglaEstado = request.query.uf
 
-    let controleCapitalEstado = require('./modulo/manipulandoArrayEJSON')
+    let controleCapitalEstado = require('./modulo/manipulandoArrayEJSON.js')
     let capitalEstado = controleCapitalEstado.getCapitalEstado(siglaEstado)
 
     if(capitalEstado){
@@ -112,6 +110,6 @@ app.get('/capital/estado', cors(), async function(request, response, next){
     }
 })
 
-app.listen(8080, function(){
+app.listen(8081, function(){
     console.log('API funcionando e aguardando requisições')
 })

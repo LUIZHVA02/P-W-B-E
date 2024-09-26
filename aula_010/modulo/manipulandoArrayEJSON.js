@@ -8,21 +8,27 @@ const getListaDeEstados = function () {
     retorna a lista de todos os estados do Brasil. 
     *
     **********************************************/
+    try {
 
-    let jsonEstados = {}
-    let arrayEstados = []
-    let caminhoEstados = estados_cidades.estadosCidades.estados
+        let jsonEstados = {}
+        let arrayEstados = []
+        let caminhoEstados = estados_cidades.estadosCidades.estados
 
 
-    caminhoEstados.forEach(function (sigla, indice) {
-        arrayEstados.push(caminhoEstados[indice].sigla)
-    })
+        caminhoEstados.forEach(function (sigla, indice) {
+            arrayEstados.push(caminhoEstados[indice].sigla)
+        })
 
-    jsonEstados.uf = arrayEstados
-    jsonEstados.quantidade = arrayEstados.length
+        jsonEstados.uf = arrayEstados
+        jsonEstados.quantidade = arrayEstados.length
 
-    console.log(jsonEstados)
-    return jsonEstados
+        console.log(jsonEstados)
+        return jsonEstados
+    } catch (error) {
+        console.log(error);
+
+        return error
+    }
 }
 // getListaDeEstados()
 
@@ -34,30 +40,36 @@ const getDadosEstado = function (estadoEscolhido) {
     onde a sigla do estado será o critério de filtro. 
     *
     **********************************************/
-    let siglaEstado = estadoEscolhido.toUpperCase()
-    let caminhoEstados = estados_cidades.estadosCidades.estados
-    let jsonSigla = {}
-    let status = false
 
-    caminhoEstados.forEach(function (caminhoEstados) {
-        if (caminhoEstados.sigla.includes(siglaEstado)) {
-            jsonSigla.uf = caminhoEstados.sigla
-            jsonSigla.descricao = caminhoEstados.nome
-            jsonSigla.capital = caminhoEstados.capital
-            jsonSigla.regiao = caminhoEstados.regiao
+    try {
+        let siglaEstado = estadoEscolhido.toUpperCase()
+        let caminhoEstados = estados_cidades.estadosCidades.estados
+        let jsonSigla = {}
+        let status = false
 
+        caminhoEstados.forEach(function (caminhoEstados) {
+            if (caminhoEstados.sigla.includes(siglaEstado)) {
+                jsonSigla.uf = caminhoEstados.sigla
+                jsonSigla.descricao = caminhoEstados.nome
+                jsonSigla.capital = caminhoEstados.capital
+                jsonSigla.regiao = caminhoEstados.regiao
+
+            }
+            status = true
+        })
+
+        if (status = true) {
+            console.log(jsonSigla)
+            return jsonSigla
+        } else {
+            return false
         }
-        status = true
-    })
 
-    if (status = true) {
-        console.log(jsonSigla)
-        return jsonSigla
-    } else {
-        return false
+    } catch (error) {
+        console.log(error);
+
+        return error
     }
-
-
 
 }
 // getDadosEstado('Sp') 
@@ -71,22 +83,30 @@ const getCapitalEstado = function (estadoEscolhido) {
     filtro. 
     *
     **********************************************/
-    let siglaEstado = estadoEscolhido.toUpperCase()
-    let caminhoEstados = estados_cidades.estadosCidades.estados
-    let jsonSigla = {}
 
-    caminhoEstados.forEach(function (caminhoEstados) {
-        if (caminhoEstados.sigla.includes(siglaEstado)) {
-            jsonSigla.uf = caminhoEstados.sigla
-            jsonSigla.descricao = caminhoEstados.nome
-            jsonSigla.capital = caminhoEstados.capital
-        }
+    try {
+        let siglaEstado = estadoEscolhido.toUpperCase()
+        let caminhoEstados = estados_cidades.estadosCidades.estados
+        let jsonSigla = {}
 
-    })
-    console.log(jsonSigla)
-    return jsonSigla
+        caminhoEstados.forEach(function (caminhoEstados) {
+            if (caminhoEstados.sigla.includes(siglaEstado)) {
+                jsonSigla.uf = caminhoEstados.sigla
+                jsonSigla.descricao = caminhoEstados.nome
+                jsonSigla.capital = caminhoEstados.capital
+            }
+
+        })
+        console.log(jsonSigla)
+        return jsonSigla
+
+    } catch (error) {
+        console.log(error);
+
+        return error
+    }
 }
-// getCapitalEstado('ac')
+getCapitalEstado('ac')
 
 const getEstadosRegiao = function (regiaoEscolhida) {
     /**********************************************
@@ -180,7 +200,7 @@ const getCidades = function (estadoEscolhido) {
     let arrayCidades = []
     let caminhoEstados = estados_cidades.estadosCidades.estados
     let jsonCidadesEstado = {}
-    
+
     caminhoEstados.forEach(function (estados) {
 
         if (estados.sigla.toUpperCase().includes(siglaCidade)) {
@@ -188,7 +208,7 @@ const getCidades = function (estadoEscolhido) {
             jsonCidadesEstado.uf = estados.sigla
             jsonCidadesEstado.descricao = estados.nome
             jsonCidadesEstado.quantidade_cidades = estados.cidades.length
-            
+
             estados.cidades.forEach(function (cidade) {
                 arrayCidades.push(cidade.nome)
             })
@@ -203,7 +223,7 @@ const getCidades = function (estadoEscolhido) {
 
 }
 
-getCidades('ac')
+// getCidades('ac')
 
 module.exports = {
     getListaDeEstados,
